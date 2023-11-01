@@ -1,0 +1,9 @@
+------------------------------------------------------------------------------------------------------------------
+				Simple Generic Tempreature Calculator 
+------------------------------------------------------------------------------------------------------------------
+
+Credits Fakhir Ali
+Email : wasay.ali.111@gmail.com  | Buisness/work |
+
+Source Files : https://github.com/AngelOfAbyss/tempreature-calculator-js/tree/main.git
+lisence : GNU (General Public Lisence)
