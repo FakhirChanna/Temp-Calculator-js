@@ -39,8 +39,40 @@
         background-color: #484c4d;
     }
 
+    .bg_gray {
+        background-color: #2a2c2c;
+    }
+
     .border {
         border: 2px solid #1d1d20;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    input {
+        text-indent: 5px;
+        letter-spacing: 1px;
+    }
+
+    .border_result_tag {
+        border: 1px solid #1b1d22;
+        border-bottom: 0px;
+    }
+
+    .border_result_box {
+        border: 1px solid #1b1d22;
+        border-top: 0px;
+        border-bottom: 0px;
+    }
+
+    p {
+        font-size: .8rem !important;
+    }
+
+    .grid_data {
+        display: grid;
     }
 </style>
 
@@ -62,19 +94,100 @@
         </div>
     </nav>
 
-    <div class="container-fluid ">
-        <div class="row pb-3 ms-2 mt-4">
-            <div class="col-4 bg-light-subtle text-center rounded-top-1  ">
-                <h4>Tempreature Calculator</h4>
+    <!-- Form box -->
+
+    <div class="container-fluid m-auto mt-5 w-50 p-2 ">
+        <div class="container-fluid bg-light-subtle rounded-2 pb-1 pt-1">
+            <div class="row pb-3 ms-2 mt-4">
+                <div class="col-4 bg-light-subtle w-100">
+                    <h4 class="text-center ">Tempreature Calculator</h4>
+                </div>
+            </div>
+            <div class="row bg_steel pt-1 mb-4"></div>
+            <div class="row">
+                <div class="col-4 w-100  "></div>
+                <form action="#" class="d-flex justify-content-center">
+                    <input id="inputField" class="w-100 rounded-1 border-1" type="tel" id="getValueOfTemp"
+                        placeholder="Enter The Farnheit">
+                    <button id="btnCalculate" class="btn bg-success text-white  rounded-1 ms-2 "
+                        id="getTempCalculated">Calculate</button>
+                </form>
+            </div>
+
+            <!-- ResultBox & Log -->
+
+            <div class="container-fluid mt-4">
+                <div class="row w-25">
+                    <div class="border_result_tag btn p-2 text-white text-center bg-dark rounded-top-1">Result</div>
+                </div>
+                <div class="row bg-dark d-flex ">
+                    <div id="ResultBox" class="border_result_box col-4 w-100 pb-2 pe-1"></div>
+
+                    <!-- All Values go there generated -->
+
+                    <div class="row">
+                        <div id="resultOfValue" class="col-12 d-flex ms-2 mt-3 ">
+                            <div class="grid_data justify-content-start text-white">
+                                <p>Value</p>
+                            </div>
+                            <div id="originOfValue" class="grid_data ms-1 w-100 justify-content-start text-white">
+                                <p class="text-bg-info ps-2 pe-2 rounded-1 ">From TextValue</p>
+                            </div>
+                            <div id="dateBox" class="grid_data w-100 justify-content-end text-white-50">
+                                <p>Put date Here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-dark">
+                    <div id="ResultBox" class="border_result_box col-4 w-100 pb-5 pe-1"></div>
+                </div>
             </div>
         </div>
-        <div class="row bg-light-subtle">
-            <div class="col-4"></div>
-            <form action="#">
-                <input type="number" id="getInputFrom1">
-            </form>
-        </div>
     </div>
+    <script>
+        let button = document.getElementById("btnCalculate")
+
+        button.addEventListener("click", function () {
+            let fieldBox = document.getElementById("inputField");
+            let getValue = fieldBox.value;
+            let convertedValue = parseInt(getValue);
+
+            console.log(typeof (convertedValue) + " " + convertedValue)
+            addDate();
+        });
+
+        function addDate() {
+            // Variables
+            let ResultBox = document.getElementById("ResultBox");
+            let dateBox = document.getElementById("dateBox");
+            let OriginValueBox;
+            let textEntry;
+
+            let addTextEntry;
+            
+            addTextEntry = document.createElement("div");
+            addTextEntry.id = "#textEntryID"
+            addTextEntry.classList.add("bg-white")
+            addTextEntry.classList.add("p-3")
+            
+            dateBox.append(addTextEntry)
+
+            console.log(addTextEntry)
+
+            const date = new Date();
+
+            let makeParagraph = document.createElement("p");
+            // Cleans Date of Timezone Formatiting
+            makeParagraph.innerHTML = String(date.getHours()) + ":" + String(date.getMinutes()) + ":" + String(date.getSeconds())
+
+            // appending element to [parent Element]
+            dateBox.append(makeParagraph);
+            console.log(makeParagraph);
+
+        }
+
+    </script>
 
 
 
