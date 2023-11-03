@@ -120,8 +120,8 @@
                 <div class="row w-25">
                     <div class="border_result_tag btn p-2 text-white text-center bg-dark rounded-top-1">Result</div>
                 </div>
-                <div class="row bg-dark d-flex ">
-                    <div id="ResultBox" class="border_result_box col-4 w-100 pb-2 pe-1"></div>
+                <div id="resultBox" class="row bg-dark d-flex ">
+                    <div class="border_result_box col-4 w-100 pb-2 pe-1"></div>
 
                     <!-- All Values go there generated -->
 
@@ -145,6 +145,7 @@
             </div>
         </div>
     </div>
+
     <script>
         let button = document.getElementById("btnCalculate")
 
@@ -154,36 +155,47 @@
             let convertedValue = parseInt(getValue);
 
             console.log(typeof (convertedValue) + " " + convertedValue)
-            addDate();
+            createResult();
         });
 
-        function addDate() {
-            // Variables
-            let ResultBox = document.getElementById("ResultBox");
-            let dateBox = document.getElementById("dateBox");
-            let OriginValueBox;
-            let textEntry;
+        function createResult() {
 
-            let addTextEntry;
-            
-            addTextEntry = document.createElement("div");
-            addTextEntry.id = "#textEntryID"
-            addTextEntry.classList.add("bg-white")
-            addTextEntry.classList.add("p-3")
-            
-            dateBox.append(addTextEntry)
+            const resultBox = document.getElementById("resultBox")
+            const inputBox = document.getElementById("inputField")
 
-            console.log(addTextEntry)
+            // creates container
+            const container = document.createElement("div");
+            container.classList.add("row");
+            resultBox.append(container);
 
+            // creates contentBox for wrapping elements 
+            const contentBox = document.createElement("div");
+            contentBox.classList.add("col-12", "d-flex", "ms-2", "mt-3");
+            container.append(contentBox);
+
+            // add calculated result value from input
+            const result = document.createElement("div");
+            result.classList.add("grid_data", "justify-content-start", "text-white");
+            contentBox.append(result);
+
+            // add orginal value taken from input
+            const orginalValue = document.createElement("div");
+            orginalValue.innerHTML = inputBox;
+            orginalValue.classList.add("grid_data", "justify-content-start", "text-white", "w-100", "ms-1");
+            contentBox.append(orginalValue);
+
+            // creates text and gives date as value
+            const dateText = document.createElement("p");
             const date = new Date();
+            dateText.classList.add("grid_data", "w-100", "justify-content-end", "text-white-50")
+            dateText.innerHTML = String(date.getHours()) + ":" + String(date.getMinutes()) + ":" + String(date.getSeconds())
+            contentBox.append(dateText);
 
-            let makeParagraph = document.createElement("p");
-            // Cleans Date of Timezone Formatiting
-            makeParagraph.innerHTML = String(date.getHours()) + ":" + String(date.getMinutes()) + ":" + String(date.getSeconds())
-
-            // appending element to [parent Element]
-            dateBox.append(makeParagraph);
-            console.log(makeParagraph);
+            console.log(container);
+            console.log(contentBox);
+            console.log(result);
+            console.log(orginalValue);
+            console.log(dateText);
 
         }
 
